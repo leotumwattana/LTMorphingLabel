@@ -128,6 +128,10 @@ typealias LTMorphingSkipFramesClosure =
         }
     }
     
+    public func setTextWithoutAnimation(text:String?) {
+        super.text = text
+    }
+    
     public override func setNeedsLayout() {
         super.setNeedsLayout()
         previousRects = rectsOfEachCharacter(previousText, withFont: font)
