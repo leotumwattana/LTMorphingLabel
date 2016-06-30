@@ -128,8 +128,19 @@ typealias LTMorphingSkipFramesClosure =
         }
     }
     
-    public func setTextWithoutAnimation(text:String?) {
-        super.text = text
+    public func setTextWithoutMorphing(text newValue:String?) {
+        
+        guard text != newValue else { return }
+        
+        previousText = text ?? ""
+        diffResults = previousText >> (newValue ?? "")
+        super.text = newValue ?? ""
+        
+        morphingProgress = 0.0
+        currentFrame = 0
+        totalFrames = 0
+        
+        setNeedsLayout()
     }
     
     public override func setNeedsLayout() {
